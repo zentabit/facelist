@@ -70,6 +70,8 @@ const (
         </div>
     {{end}}
     </div>
+    <hr>
+    <a href="https://github.com/tink-ab/facelist">https://github.com/tink-ab/facelist</a>
   </body>
 </html>
 `
