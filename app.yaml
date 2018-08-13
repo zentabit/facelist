@@ -1,0 +1,10 @@
+runtime: go
+api_version: go1
+handlers:
+- url: /.*
+  script: _go_app
+
+env_variables:
+  EMAIL_FILTER: "@tink.se"
+  SLACK_TEAM: tink
+  SLACK_API_TOKEN: <SECRET_API_TOKEN_GOES_HERE>
