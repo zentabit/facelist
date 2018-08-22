@@ -45,12 +45,15 @@ const (
             grid-gap: 10px;
             background-color: #fff;
             color: #444;
+            font-family: sans-serif;
         }
-
+        .name {
+            font-weight: bold;
+        }
+        .title {
+            color: gray;
+        }
         .user {
-          //background-color: #444;
-          //color: #fff;
-          //border-radius: 5px;
           padding: 10px;
         }
     </style>
@@ -59,11 +62,12 @@ const (
     <div class="container">
     {{range .Members}}
         <div class="user">
-            <h3>{{if .Profile.RealName}}{{.Profile.RealName}}{{else}}{{.Name}}{{end}}
+            <div class="name">{{if .Profile.RealName}}{{.Profile.RealName}}{{else}}{{.Name}}{{end}}
             <a href="https://{{- $.SlackTeam -}}.slack.com/messages/{{.Id}}/team/{{.Id}}/" target="_blank">
                 <img src="https://a.slack-edge.com/436da/marketing/img/meta/favicon-32.png" title="Contact {{.Profile.FirstName}} on Slack" width="16" height="16"/>
             </a>
-            </h3>
+            </div>
+            <div class="title">{{.Profile.Title}}&nbsp;</div>
             <a href="https://{{- $.SlackTeam -}}.slack.com/messages/{{.Id}}/team/{{.Id}}/" target="_blank">
                 <img src="{{.Profile.Image}}" title="Contact {{.Profile.FirstName}} on Slack"/>
             </a>
