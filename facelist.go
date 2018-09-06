@@ -75,7 +75,7 @@ const (
     {{end}}
     </div>
     <hr>
-    <a href="https://github.com/tink-ab/facelist">https://github.com/tink-ab/facelist</a>
+    {{ len .Members }} faces served by <a href="https://github.com/tink-ab/facelist">https://github.com/tink-ab/facelist</a>
   </body>
 </html>
 `
