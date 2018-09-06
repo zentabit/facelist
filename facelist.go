@@ -39,13 +39,15 @@ const (
     <meta charset="application/json">
     <title>Facelist</title>
     <style>
+        body {
+            font-family: sans-serif;
+        }
         .container {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             grid-gap: 10px;
             background-color: #fff;
             color: #444;
-            font-family: sans-serif;
         }
         .name {
             font-weight: bold;
@@ -54,7 +56,7 @@ const (
             color: gray;
         }
         .user {
-          padding: 10px;
+            padding: 10px;
         }
     </style>
   </head>
