@@ -101,12 +101,12 @@ const (
     {{range .Members}}
         <div class="user">
             <div class="name">{{if .Profile.RealName}}{{.Profile.RealName}}{{else}}{{.Name}}{{end}}
-            <a href="https://{{- $.SlackTeam -}}.slack.com/messages/{{.Id}}/team/{{.Id}}/" target="_blank">
+            <a href="slack://user?team={{.TeamId}}&id={{.Id}}">
                 <img src="https://a.slack-edge.com/436da/marketing/img/meta/favicon-32.png" title="Contact {{.Profile.FirstName}} on Slack" width="16" height="16"/>
             </a>
             </div>
             <div class="title">{{.Profile.Title}}&nbsp;</div>
-            <a href="https://{{- $.SlackTeam -}}.slack.com/messages/{{.Id}}/team/{{.Id}}/" target="_blank">
+            <a href="slack://user?team={{.TeamId}}&id={{.Id}}">
                 <img src="{{.Profile.Image}}" title="Contact {{.Profile.FirstName}} on Slack"/>
             </a>
         </div>
@@ -140,6 +140,7 @@ type (
     User struct {
         Name    string  `json:"name"`
         Id      string  `json:"id"`
+        TeamId  string  `json:"team_id"`
         IsBot   bool    `json:"is_bot"`
         Deleted bool    `json:"deleted"`
         Profile Profile `json:"profile"`
