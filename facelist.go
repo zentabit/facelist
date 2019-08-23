@@ -90,18 +90,24 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
     ctx := appengine.NewContext(r)
     client := urlfetch.Client(ctx)
-    url := fmt.Sprintf("https://slack.com/api/users.list?token=%s", cfg.SlackApiToken)
-    resp, err := client.Get(url)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-    body, _ := ioutil.ReadAll(resp.Body)
+		url := fmt.Sprintf("https://slack.com/api/users.list?token=%s", cfg.SlackApiToken)
 
-    err = json.Unmarshal(body, &userlist)
-    if err != nil {
-        log.Fatal(err)
-    }
+		// Use mocked data for local dev
+		if cfg.SlackApiToken == "<SECRET_API_TOKEN_GOES_HERE>" {
+			userlist = getMockedUsers()
+		} else {
+			resp, err := client.Get(url)
+			if err != nil {
+					http.Error(w, err.Error(), http.StatusInternalServerError)
+					return
+			}
+			body, _ := ioutil.ReadAll(resp.Body)
+
+			err = json.Unmarshal(body, &userlist)
+			if err != nil {
+					log.Fatal(err)
+			}
+		}
 
     // Filter out deleted accounts, bots and users without @tink.se email adresses
     filteredUsers := []User{}
