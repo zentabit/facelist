@@ -15,6 +15,10 @@ facelist is configured by setting environment variables in app.yaml:
 Development
 ===========
 
+Download external dependencies
+
+    $ go mod download
+
 Install google-cloud-sdk
 
     $ brew cask install google-cloud-sdk
