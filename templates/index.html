@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Facelist</title>
+    <style>
+        :root {
+            --border: 1px solid rgba(0,0,0,0.08);
+        }
+        body {
+            font-family: sans-serif;
+            background-color: #FBFBFC;
+            margin: 0;
+        }
+        .layout {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .topbar {
+            border-bottom: var(--border);
+        }
+        .topbar, .footer {
+            padding: 0.5rem;
+            background-color: #E2E2E3;
+            position: relative;
+            z-index: 1;
+        }
+        #searchField {
+          background-image: url('https://www.w3schools.com/css/searchicon.png'); /* Add a search icon to input */
+          background-position: 10px 12px;
+          background-repeat: no-repeat;
+          width: 100%;
+          font-size: 16px;
+          padding: 12px 20px 12px 40px;
+          border: 1px solid #ddd;
+          box-sizing: border-box;
+        }
+        .users {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            color: #444;
+            overflow-y: auto;
+            padding-top: 12px;
+        }
+        .name {
+            font-weight: bold;
+        }
+        .title {
+            color: gray;
+        }
+        .name,.title {
+            margin-bottom: 0.25rem;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 0.5rem;
+        }
+        .card, .topbar {
+            box-shadow: 0px 4px 8px 0 rgba(0,0,0,0.08);
+        }
+        .block {
+            flex: 1;
+            margin: 0.5rem;
+        }
+        .user {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 200px;
+        }
+        .user__link {
+            line-height: 0;
+            margin-top: auto;
+            width: 100%;
+        }
+        .user__image {
+            width: 192px;
+        }
+        .footer {
+            box-shadow: 0px -4px 8px 0 rgba(0,0,0,0.08);
+            margin-top: auto;
+            border-top: var(--border);
+        }
+    </style>
+    <script>
+    var input, users, container;
+    window.onload = function() {
+        // cache elements for faster search
+        input = document.getElementById('searchField');
+        input.focus();
+        container = document.getElementById("users");
+        users = container.getElementsByClassName('user');
+    };
+
+    function getComparableText(el) {
+       const txt = el.textContent || el.innerText;
+       return txt.toUpperCase();
+    }
+    function search() {
+      // Declare variables
+      var filter, i, userName, userTitle;
+      filter = input.value.toUpperCase();
+
+      // Loop through all users, and hide those who don't match the search query
+      for (i = 0; i < users.length; i++) {
+        userName = getComparableText(users[i].querySelector('.name'));
+        userTitle = getComparableText(users[i].querySelector('.title'));
+        if (userName.indexOf(filter) > -1 || userTitle.indexOf(filter) > -1) {
+          users[i].style.display = "";
+        } else {
+          users[i].style.display = "none";
+        }
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div class="layout">
+        <div class="topbar">
+            <input type="text" id="searchField" onkeyup="search()" placeholder="Search ...">
+        </div>
+        <div id="users" class="users">
+        {{range .Members}}
+            <div class="user card block">
+                <div class="name">{{if .Profile.RealName}}{{.Profile.RealName}}{{else}}{{.Name}}{{end}}
+                <a href="slack://user?team={{.TeamId}}&id={{.Id}}">
+                    <img src="https://a.slack-edge.com/436da/marketing/img/meta/favicon-32.png" title="Contact {{.Profile.FirstName}} on Slack" width="16" height="16"/>
+                </a>
+                </div>
+                <div class="title">{{.Profile.Title}}</div>
+                <a class="user__link" href="slack://user?team={{.TeamId}}&id={{.Id}}">
+                    <img class="user__image" src="{{.Profile.Image}}" title="Contact {{.Profile.FirstName}} on Slack"/>
+                </a>
+            </div>
+        {{end}}
+        </div>
+        <div class="footer">
+            <span class="count">{{ len .Members }}</span> faces served by <a href="https://github.com/tink-ab/facelist">https://github.com/tink-ab/facelist</a>
+        </div>
+    </div>
+  </body>
+</html>
