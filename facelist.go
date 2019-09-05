@@ -31,98 +31,10 @@ import (
     "strings"
 )
 
-const (
-    // IndexTmpl is the template for the index page.
-    IndexTmpl = `<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="application/json">
-    <title>Facelist</title>
-    <style>
-        body {
-            font-family: sans-serif;
-        }
-        #searchField {
-          background-image: url('https://www.w3schools.com/css/searchicon.png'); /* Add a search icon to input */
-          background-position: 10px 12px;
-          background-repeat: no-repeat;
-          width: 50%;
-          font-size: 16px;
-          padding: 12px 20px 12px 40px;
-          border: 1px solid #ddd;
-          margin-left: 10px;
-          margin-bottom: 12px;
-        }
-        #container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            grid-gap: 10px;
-            background-color: #fff;
-            color: #444;
-        }
-        .name {
-            font-weight: bold;
-        }
-        .title {
-            color: gray;
-        }
-        .user {
-            padding: 10px;
-        }
-    </style>
-    <script>
-    window.onload = function() {
-      document.getElementById("searchField").focus();
-    };
-    function search() {
-      // Declare variables
-      var input, filter, container, users, a, i, txtValue;
-      input = document.getElementById('searchField');
-      filter = input.value.toUpperCase();
-      container = document.getElementById("container");
-      users = container.getElementsByClassName('user');
-
-      // Loop through all users, and hide those who don't match the search query
-      for (i = 0; i < users.length; i++) {
-        a = users[i].getElementsByClassName("name")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          users[i].style.display = "";
-        } else {
-          users[i].style.display = "none";
-        }
-      }
-    }
-    </script>
-  </head>
-  <body>
-    <input type="text" id="searchField" onkeyup="search()" placeholder="Search by name...">
-    <div id="container">
-    {{range .Members}}
-        <div class="user">
-            <div class="name">{{if .Profile.RealName}}{{.Profile.RealName}}{{else}}{{.Name}}{{end}}
-            <a href="slack://user?team={{.TeamId}}&id={{.Id}}">
-                <img src="https://a.slack-edge.com/436da/marketing/img/meta/favicon-32.png" title="Contact {{.Profile.FirstName}} on Slack" width="16" height="16"/>
-            </a>
-            </div>
-            <div class="title">{{.Profile.Title}}&nbsp;</div>
-            <a href="slack://user?team={{.TeamId}}&id={{.Id}}">
-                <img src="{{.Profile.Image}}" title="Contact {{.Profile.FirstName}} on Slack"/>
-            </a>
-        </div>
-    {{end}}
-    </div>
-    <hr>
-    {{ len .Members }} faces served by <a href="https://github.com/tink-ab/facelist">https://github.com/tink-ab/facelist</a>
-  </body>
-</html>
-`
-)
-
 var (
     cfg           config
     userlist      UserList
-    IndexTemplate = template.Must(template.New("index").Parse(IndexTmpl))
+    IndexTemplate = template.Must(template.ParseFiles("templates/index.html"))
 )
 
 type (
@@ -178,18 +90,24 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
     ctx := appengine.NewContext(r)
     client := urlfetch.Client(ctx)
-    url := fmt.Sprintf("https://slack.com/api/users.list?token=%s", cfg.SlackApiToken)
-    resp, err := client.Get(url)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-    body, _ := ioutil.ReadAll(resp.Body)
+		url := fmt.Sprintf("https://slack.com/api/users.list?token=%s", cfg.SlackApiToken)
 
-    err = json.Unmarshal(body, &userlist)
-    if err != nil {
-        log.Fatal(err)
-    }
+		// Use mocked data for local dev
+		if cfg.SlackApiToken == "<SECRET_API_TOKEN_GOES_HERE>" {
+			userlist = getMockedUsers()
+		} else {
+			resp, err := client.Get(url)
+			if err != nil {
+					http.Error(w, err.Error(), http.StatusInternalServerError)
+					return
+			}
+			body, _ := ioutil.ReadAll(resp.Body)
+
+			err = json.Unmarshal(body, &userlist)
+			if err != nil {
+					log.Fatal(err)
+			}
+		}
 
     // Filter out deleted accounts, bots and users without @tink.se email adresses
     filteredUsers := []User{}

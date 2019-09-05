@@ -1,0 +1,402 @@
+{
+    "members": [
+      {
+        "id": "ce48a99f-cd3a-4325-a2fa-40ae2d267caa",
+        "team_id": "f886e478-e7fb-4e10-abe2-997259e7a587",
+        "name": "treutel",
+        "real_name": "treutel",
+        "profile": {
+          "title": "Human Accountability Producer",
+          "real_name": "Elvis Treutel",
+          "display_name": "treutel",
+          "real_name_normalized": "Elvis Treutel",
+          "display_name_normalized": "treutel",
+          "email": "elvis.treutel@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/nsamoylov/128.jpg",
+          "team": "f886e478-e7fb-4e10-abe2-997259e7a587"
+        }
+      },
+      {
+        "id": "7fca4e85-81e8-4d5d-8a42-48e934768fe6",
+        "team_id": "2ecb78a7-eeba-4126-89db-b0b6ceaa36e0",
+        "name": "koch",
+        "real_name": "koch",
+        "profile": {
+          "title": "Central Web Technician",
+          "real_name": "Kenna Koch",
+          "display_name": "koch",
+          "real_name_normalized": "Kenna Koch",
+          "display_name_normalized": "koch",
+          "email": "kenna.koch@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/lmjabreu/128.jpg",
+          "team": "2ecb78a7-eeba-4126-89db-b0b6ceaa36e0"
+        }
+      },
+      {
+        "id": "dc414400-1e0a-4630-8710-02a36a2593e8",
+        "team_id": "61c2f1d4-44fa-486d-bca9-f9563d67b06e",
+        "name": "abernathy",
+        "real_name": "abernathy",
+        "profile": {
+          "title": "Future Tactics Strategist",
+          "real_name": "Alberta Abernathy",
+          "display_name": "abernathy",
+          "real_name_normalized": "Alberta Abernathy",
+          "display_name_normalized": "abernathy",
+          "email": "alberta.abernathy@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/idiot/128.jpg",
+          "team": "61c2f1d4-44fa-486d-bca9-f9563d67b06e"
+        }
+      },
+      {
+        "id": "442f6413-4f1b-4a7b-931a-7066aee52e4a",
+        "team_id": "61e36637-1b33-4a43-a0b2-0b27b3a486ca",
+        "name": "kuhlman",
+        "real_name": "kuhlman",
+        "profile": {
+          "title": "Legacy Interactions Facilitator",
+          "real_name": "Maurice Kuhlman",
+          "display_name": "kuhlman",
+          "real_name_normalized": "Maurice Kuhlman",
+          "display_name_normalized": "kuhlman",
+          "email": "maurice.kuhlman@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/creartinc/128.jpg",
+          "team": "61e36637-1b33-4a43-a0b2-0b27b3a486ca"
+        }
+      },
+      {
+        "id": "497b4bb8-beba-4e51-87f1-1723c8ca2630",
+        "team_id": "b6bfd1c0-1263-4937-a618-41d603db8975",
+        "name": "will",
+        "real_name": "will",
+        "profile": {
+          "title": "Corporate Integration Supervisor",
+          "real_name": "Ashleigh Will",
+          "display_name": "will",
+          "real_name_normalized": "Ashleigh Will",
+          "display_name_normalized": "will",
+          "email": "ashleigh.will@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/thehacker/128.jpg",
+          "team": "b6bfd1c0-1263-4937-a618-41d603db8975"
+        }
+      },
+      {
+        "id": "a431fb01-7fe2-47fe-93f4-7c4312e7d600",
+        "team_id": "45d3cce5-0fb0-4d99-bad4-9d1b7d33ada3",
+        "name": "rodriguez",
+        "real_name": "rodriguez",
+        "profile": {
+          "title": "National Division Coordinator",
+          "real_name": "Justine Rodriguez",
+          "display_name": "rodriguez",
+          "real_name_normalized": "Justine Rodriguez",
+          "display_name_normalized": "rodriguez",
+          "email": "justine.rodriguez@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/looneydoodle/128.jpg",
+          "team": "45d3cce5-0fb0-4d99-bad4-9d1b7d33ada3"
+        }
+      },
+      {
+        "id": "5f0076cd-220d-4273-b59d-5af1ebe3f1d2",
+        "team_id": "497208d8-8316-4926-9b42-3bcfae21c875",
+        "name": "cruickshank",
+        "real_name": "cruickshank",
+        "profile": {
+          "real_name": "Ophelia Cruickshank",
+          "display_name": "cruickshank",
+          "real_name_normalized": "Ophelia Cruickshank",
+          "display_name_normalized": "cruickshank",
+          "email": "ophelia.cruickshank@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/funwatercat/128.jpg",
+          "team": "497208d8-8316-4926-9b42-3bcfae21c875"
+        }
+      },
+      {
+        "id": "a30fad1d-764e-4c1e-b103-9e88e404e7a4",
+        "team_id": "66d0a11c-97a7-4e76-9693-933ff1e02b23",
+        "name": "kunde",
+        "real_name": "kunde",
+        "profile": {
+          "title": "Direct Implementation Coordinator",
+          "real_name": "Theresia Kunde",
+          "display_name": "kunde",
+          "real_name_normalized": "Theresia Kunde",
+          "display_name_normalized": "kunde",
+          "email": "theresia.kunde@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/antjanus/128.jpg",
+          "team": "66d0a11c-97a7-4e76-9693-933ff1e02b23"
+        }
+      },
+      {
+        "id": "4a390143-cc33-4632-8a05-aba00968c5e4",
+        "team_id": "3a3ec6a7-ab87-445f-b15e-c17a3af9443f",
+        "name": "schultz",
+        "real_name": "schultz",
+        "profile": {
+          "title": "Internal Operations Designer",
+          "real_name": "Citlalli Schultz",
+          "display_name": "schultz",
+          "real_name_normalized": "Citlalli Schultz",
+          "display_name_normalized": "schultz",
+          "email": "citlalli.schultz@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/travishines/128.jpg",
+          "team": "3a3ec6a7-ab87-445f-b15e-c17a3af9443f"
+        }
+      },
+      {
+        "id": "bd1419cf-4890-444a-acef-06d911a1796b",
+        "team_id": "8a780766-9faa-4ab0-a0a7-f1c2c9a6dcd6",
+        "name": "leffler",
+        "real_name": "leffler",
+        "profile": {
+          "title": "Regional Configuration Officer",
+          "real_name": "Paris Leffler",
+          "display_name": "leffler",
+          "real_name_normalized": "Paris Leffler",
+          "display_name_normalized": "leffler",
+          "email": "paris.leffler@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/ricburton/128.jpg",
+          "team": "8a780766-9faa-4ab0-a0a7-f1c2c9a6dcd6"
+        }
+      },
+      {
+        "id": "f36259b0-e1dd-465f-bf03-37affe66dc36",
+        "team_id": "25b0d54f-d5c0-4718-8035-89ec1f0c748c",
+        "name": "stracke",
+        "real_name": "stracke",
+        "profile": {
+          "title": "Future Implementation Developer",
+          "real_name": "Liam Stracke",
+          "display_name": "stracke",
+          "real_name_normalized": "Liam Stracke",
+          "display_name_normalized": "stracke",
+          "email": "liam.stracke@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/thinkleft/128.jpg",
+          "team": "25b0d54f-d5c0-4718-8035-89ec1f0c748c"
+        }
+      },
+      {
+        "id": "0c2dfdd8-70a9-4192-b4cc-d0ea1b0d765c",
+        "team_id": "49ce1b8a-cd36-47c6-8553-dc44567e781b",
+        "name": "satterfield",
+        "real_name": "satterfield",
+        "profile": {
+          "title": "Dynamic Accounts Strategist",
+          "real_name": "Lesly Satterfield",
+          "display_name": "satterfield",
+          "real_name_normalized": "Lesly Satterfield",
+          "display_name_normalized": "satterfield",
+          "email": "lesly.satterfield@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/wake_gs/128.jpg",
+          "team": "49ce1b8a-cd36-47c6-8553-dc44567e781b"
+        }
+      },
+      {
+        "id": "eabdb428-3df8-4087-970b-91729fa40e94",
+        "team_id": "98576033-713b-4a4c-9897-38f40fe37333",
+        "name": "bosco",
+        "real_name": "bosco",
+        "profile": {
+          "title": "Investor Division Facilitator",
+          "real_name": "Koby Bosco",
+          "display_name": "bosco",
+          "real_name_normalized": "Koby Bosco",
+          "display_name_normalized": "bosco",
+          "email": "koby.bosco@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/hgharrygo/128.jpg",
+          "team": "98576033-713b-4a4c-9897-38f40fe37333"
+        }
+      },
+      {
+        "id": "4f2dbaa7-52b0-437a-b67f-65ba7a46aab6",
+        "team_id": "489859d4-be27-4544-bdb8-a6b963185e1f",
+        "name": "padberg",
+        "real_name": "padberg",
+        "profile": {
+          "title": "National Web Supervisor",
+          "real_name": "Cassidy Padberg",
+          "display_name": "padberg",
+          "real_name_normalized": "Cassidy Padberg",
+          "display_name_normalized": "padberg",
+          "email": "cassidy.padberg@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/bighanddesign/128.jpg",
+          "team": "489859d4-be27-4544-bdb8-a6b963185e1f"
+        }
+      },
+      {
+        "id": "b2f6f878-af1a-4b8b-8ec2-a26baad0c57c",
+        "team_id": "fab794d4-6359-406d-ad00-48f086afa668",
+        "name": "gibson",
+        "real_name": "gibson",
+        "profile": {
+          "title": "Corporate Web Coordinator",
+          "real_name": "Roscoe Gibson",
+          "display_name": "gibson",
+          "real_name_normalized": "Roscoe Gibson",
+          "display_name_normalized": "gibson",
+          "email": "roscoe.gibson@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/michaelkoper/128.jpg",
+          "team": "fab794d4-6359-406d-ad00-48f086afa668"
+        }
+      },
+      {
+        "id": "a6d6e799-8791-4a61-b103-0a1e49ffee95",
+        "team_id": "30e2d875-867a-4f05-a219-69689f146834",
+        "name": "jacobs",
+        "real_name": "jacobs",
+        "profile": {
+          "title": "Senior Web Supervisor",
+          "real_name": "Edgardo Jacobs",
+          "display_name": "jacobs",
+          "real_name_normalized": "Edgardo Jacobs",
+          "display_name_normalized": "jacobs",
+          "email": "edgardo.jacobs@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/levisan/128.jpg",
+          "team": "30e2d875-867a-4f05-a219-69689f146834"
+        }
+      },
+      {
+        "id": "bae5bba7-cce2-4717-bedc-42efd731b78a",
+        "team_id": "12390416-1e86-47e2-9da4-8d44b02e87a7",
+        "name": "gerhold",
+        "real_name": "gerhold",
+        "profile": {
+          "title": "Future Infrastructure Assistant",
+          "real_name": "Mariam Gerhold",
+          "display_name": "gerhold",
+          "real_name_normalized": "Mariam Gerhold",
+          "display_name_normalized": "gerhold",
+          "email": "mariam.gerhold@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/ramanathan_pdy/128.jpg",
+          "team": "12390416-1e86-47e2-9da4-8d44b02e87a7"
+        }
+      },
+      {
+        "id": "a646a5ff-3be0-4b67-9aea-1ebac2ac3210",
+        "team_id": "4e23368c-ddb9-491e-a32e-024e689f6a19",
+        "name": "upton",
+        "real_name": "upton",
+        "profile": {
+          "title": "Future Optimization Supervisor",
+          "real_name": "Selmer Upton",
+          "display_name": "upton",
+          "real_name_normalized": "Selmer Upton",
+          "display_name_normalized": "upton",
+          "email": "selmer.upton@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/hjartstrorn/128.jpg",
+          "team": "4e23368c-ddb9-491e-a32e-024e689f6a19"
+        }
+      },
+      {
+        "id": "23c264e1-2126-4ee7-9702-e23740bd576a",
+        "team_id": "3e14eb9a-fc38-4505-afa7-d36c419633c3",
+        "name": "feeney",
+        "real_name": "feeney",
+        "profile": {
+          "title": "International Integration Specialist",
+          "real_name": "Dane Feeney",
+          "display_name": "feeney",
+          "real_name_normalized": "Dane Feeney",
+          "display_name_normalized": "feeney",
+          "email": "dane.feeney@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/suprb/128.jpg",
+          "team": "3e14eb9a-fc38-4505-afa7-d36c419633c3"
+        }
+      },
+      {
+        "id": "9ba7a115-7133-4ff4-89c8-eef857bdb708",
+        "team_id": "72b4ea60-aaf5-490c-9b5a-53e723ad7741",
+        "name": "hayes",
+        "real_name": "hayes",
+        "profile": {
+          "title": "Senior Integration Manager",
+          "real_name": "Gia Hayes",
+          "display_name": "hayes",
+          "real_name_normalized": "Gia Hayes",
+          "display_name_normalized": "hayes",
+          "email": "gia.hayes@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/chrisslowik/128.jpg",
+          "team": "72b4ea60-aaf5-490c-9b5a-53e723ad7741"
+        }
+      },
+      {
+        "id": "d54016c7-717a-4b36-b934-de750827973d",
+        "team_id": "94f4a082-43ac-4c41-a4a9-78ba20a76c8a",
+        "name": "gleichner",
+        "real_name": "gleichner",
+        "profile": {
+          "real_name": "Alfonzo Gleichner",
+          "display_name": "gleichner",
+          "real_name_normalized": "Alfonzo Gleichner",
+          "display_name_normalized": "gleichner",
+          "email": "alfonzo.gleichner@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/we_social/128.jpg",
+          "team": "94f4a082-43ac-4c41-a4a9-78ba20a76c8a"
+        }
+      },
+      {
+        "id": "ebcf1234-0089-4d5e-9d83-8c9b030ce2df",
+        "team_id": "2ccb3ddd-a786-481c-929d-4c284e21766b",
+        "name": "brekke",
+        "real_name": "brekke",
+        "profile": {
+          "title": "Investor Communications Director",
+          "real_name": "Grayson Brekke",
+          "display_name": "brekke",
+          "real_name_normalized": "Grayson Brekke",
+          "display_name_normalized": "brekke",
+          "email": "grayson.brekke@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/marcobarbosa/128.jpg",
+          "team": "2ccb3ddd-a786-481c-929d-4c284e21766b"
+        }
+      },
+      {
+        "id": "76de68c2-62dc-4cf0-92fb-847e3f6beab8",
+        "team_id": "2bb380f7-cbea-4559-88e7-b10ea353c52c",
+        "name": "daugherty",
+        "real_name": "daugherty",
+        "profile": {
+          "title": "Dynamic Data Engineer",
+          "real_name": "Jadyn Daugherty",
+          "display_name": "daugherty",
+          "real_name_normalized": "Jadyn Daugherty",
+          "display_name_normalized": "daugherty",
+          "email": "jadyn.daugherty@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/joaoedumedeiros/128.jpg",
+          "team": "2bb380f7-cbea-4559-88e7-b10ea353c52c"
+        }
+      },
+      {
+        "id": "4486999d-adc5-44a1-b4ce-2da174d0a4d2",
+        "team_id": "b1491082-c542-41ab-ac97-4a640839dcf2",
+        "name": "renner",
+        "real_name": "renner",
+        "profile": {
+          "real_name": "Obie Renner",
+          "display_name": "renner",
+          "real_name_normalized": "Obie Renner",
+          "display_name_normalized": "renner",
+          "email": "obie.renner@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/longlivemyword/128.jpg",
+          "team": "b1491082-c542-41ab-ac97-4a640839dcf2"
+        }
+      },
+      {
+        "id": "d37a8670-44c7-49b8-b1e7-28c32974917b",
+        "team_id": "819d293b-0a20-478d-a382-c82ff76cd14d",
+        "name": "cormier",
+        "real_name": "cormier",
+        "profile": {
+          "title": "Product Brand Architect",
+          "real_name": "Davion Cormier",
+          "display_name": "cormier",
+          "real_name_normalized": "Davion Cormier",
+          "display_name_normalized": "cormier",
+          "email": "davion.cormier@tink.se",
+          "image_192": "https://s3.amazonaws.com/uifaces/faces/twitter/supervova/128.jpg",
+          "team": "819d293b-0a20-478d-a382-c82ff76cd14d"
+        }
+      }
+    ]
+  }
+  
