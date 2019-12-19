@@ -101,6 +101,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 					http.Error(w, err.Error(), http.StatusInternalServerError)
 					return
 			}
+		defer resp.Body.Close()
 			body, _ := ioutil.ReadAll(resp.Body)
 
 			err = json.Unmarshal(body, &userlist)
