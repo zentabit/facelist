@@ -19,9 +19,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/kelseyhightower/envconfig"
-	"google.golang.org/appengine"
-	"google.golang.org/appengine/urlfetch"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -29,6 +26,10 @@ import (
 	"os"
 	"sort"
 	"strings"
+
+	"github.com/kelseyhightower/envconfig"
+	"google.golang.org/appengine"
+	"google.golang.org/appengine/urlfetch"
 )
 
 var (
