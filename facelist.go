@@ -46,7 +46,7 @@ type (
 
     UserList struct {
         SlackTeam string
-        Members   []User `json:members`
+		Members   []User `json:"members"`
     }
 
     User struct {
