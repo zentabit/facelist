@@ -113,8 +113,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Filter out deleted accounts, bots and users without @tink.se email addresses
 	filteredUsers := []User{}
-	for i := range userlist.Members {
-		user := userlist.Members[i]
+	for _, user := range userlist.Members {
 		if !user.Deleted && !user.IsBot && strings.HasSuffix(user.Profile.Email, cfg.EmailFilter) {
 			filteredUsers = append(filteredUsers, user)
 		}
