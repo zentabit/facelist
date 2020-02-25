@@ -18,7 +18,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -91,13 +90,19 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	ctx := appengine.NewContext(r)
 	client := urlfetch.Client(ctx)
-	url := fmt.Sprintf("https://slack.com/api/users.list?token=%s", cfg.SlackApiToken)
 
 	// Use mocked data for local dev
 	if cfg.SlackApiToken == "<SECRET_API_TOKEN_GOES_HERE>" {
 		userlist = getMockedUsers()
 	} else {
-		resp, err := client.Get(url)
+		req, err := http.NewRequest("GET", "https://slack.com/api/users.list/", nil)
+		req.Header.Add("Authorization", cfg.SlackApiToken)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		resp, err := client.Do(req)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
