@@ -96,11 +96,11 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		userlist = getMockedUsers()
 	} else {
 		req, err := http.NewRequest("GET", "https://slack.com/api/users.list/", nil)
-		req.Header.Add("Authorization", "Bearer " + cfg.SlackApiToken)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
+		req.Header.Add("Authorization", "Bearer " + cfg.SlackApiToken)
 
 		resp, err := client.Do(req)
 		if err != nil {
