@@ -1,16 +1,16 @@
 Facelist
 ========
 
-A GAE app that queries Slack API for user profiles and show them on a simple web page.
+An app that queries Slack API for user profiles and show them on a simple web page.
 
 Configuration
 =============
 
-facelist is configured by setting environment variables in app.yaml:
+facelist is configured by a config file e.g facelist.yaml:
 
-    * EMAIL_FILTER - Only users with a email ending with this string will be showed
-    * SLACK_TEAM - The name of your slack team
-    * SLACK_API_TOKEN - Access token to the Slack api
+    * emailFilter - Only users with a email ending with this string will be showed
+    * slackTeam - The name of your slack team
+    * slackAPIToken - Access token to the Slack api
 
 Development
 ===========
@@ -19,18 +19,13 @@ Download external dependencies
 
     $ go mod download
 
-Install google-cloud-sdk
+Build and run locally:
 
-    $ brew cask install google-cloud-sdk
-
-Run locally:
-
-    $ dev_appserver.py app.yaml
+    $ go build
+    $ ./facelist
 
 The facelist should be served at http://localhost:8080/
 
 Deploy app
 ==========
-
-    $ gcloud config set project <gae project id>
-    $ gcloud app deploy
+The included dockerfile can be used to deploy the app.
