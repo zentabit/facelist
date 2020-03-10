@@ -18,6 +18,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -25,10 +26,9 @@ import (
 	"os"
 	"sort"
 	"strings"
+	"time"
 
-	"github.com/kelseyhightower/envconfig"
-	"google.golang.org/appengine"
-	"google.golang.org/appengine/urlfetch"
+	"gopkg.in/yaml.v2"
 )
 
 var (
@@ -39,9 +39,9 @@ var (
 
 type (
 	config struct {
-		EmailFilter   string `envconfig:"EMAIL_FILTER" default:""`
-		SlackApiToken string `envconfig:"SLACK_API_TOKEN"`
-		SlackTeam     string `envconfig:"SLACK_TEAM"`
+		EmailFilter   string `yaml:"emailFilter"`
+		SlackAPIToken string `yaml:"slackAPIToken"`
+		SlackTeam     string `yaml:"slackTeam"`
 	}
 
 	UserList struct {
@@ -72,14 +72,24 @@ type (
 
 func init() {
 	log.Println("Starting facelist")
-	if err := envconfig.Process("facelist", &cfg); err != nil {
-		log.Fatalf("failed to parse config: %v\n", err)
+
+	configFile := flag.String("config", "facelist.yaml", "Configuration file to load")
+	flag.Parse()
+	b, err := ioutil.ReadFile(*configFile)
+	if err != nil {
+		log.Fatalf("Unable to read config: %v\n", err)
 	}
+
+	err = yaml.Unmarshal(b, &cfg)
+	if err != nil {
+		log.Fatalf("Unable to decode config: %v\n", err)
+	}
+
 	if cfg.SlackTeam == "" {
 		log.Fatalf("SLACK_TEAM is not set!")
 		os.Exit(1)
 	}
-	if cfg.SlackApiToken == "" {
+	if cfg.SlackAPIToken == "" {
 		log.Fatalf("SLACK_API_TOKEN is not set!")
 		os.Exit(1)
 	}
@@ -87,12 +97,10 @@ func init() {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-
-	ctx := appengine.NewContext(r)
-	client := urlfetch.Client(ctx)
+	client := http.Client{Timeout: time.Duration(5 * time.Second)}
 
 	// Use mocked data for local dev
-	if cfg.SlackApiToken == "<SECRET_API_TOKEN_GOES_HERE>" {
+	if cfg.SlackAPIToken == "<SECRET_API_TOKEN_GOES_HERE>" {
 		userlist = getMockedUsers()
 	} else {
 		req, err := http.NewRequest("GET", "https://slack.com/api/users.list/", nil)
@@ -100,7 +108,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		req.Header.Add("Authorization", "Bearer " + cfg.SlackApiToken)
+		req.Header.Add("Authorization", "Bearer "+cfg.SlackAPIToken)
 
 		resp, err := client.Do(req)
 		if err != nil {
@@ -138,5 +146,5 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", indexHandler)
-	appengine.Main()
+	http.ListenAndServe(":8080", nil)
 }
