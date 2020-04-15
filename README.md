@@ -33,3 +33,10 @@ The facelist should be served at http://localhost:8080/
 Deploy app
 ==========
 The included dockerfile can be used to deploy the app.
+
+Alernative Local deployment with docker-compose
+===============================================
+
+    $ docker-compose -d up
+
+The facelist should be served at http://localhost:8080/
