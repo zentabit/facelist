@@ -107,6 +107,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		req, err := http.NewRequest("GET", "https://slack.com/api/users.list/", nil)
 		if err != nil {
+			log.Println("API error: " + err.Error())
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
@@ -114,6 +115,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 		resp, err := client.Do(req)
 		if err != nil {
+			log.Println("API error: " + err.Error())
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
