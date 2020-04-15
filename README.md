@@ -12,6 +12,10 @@ facelist is configured by a config file e.g facelist.yaml:
     * slackTeam - The name of your slack team
     * slackAPIToken - Access token to the Slack api
 
+The API-token requires the scopes:
+* users:read
+* users:read.email
+
 Development
 ===========
 
