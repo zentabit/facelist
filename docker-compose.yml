@@ -1,0 +1,10 @@
+version: '3.5'
+
+services:
+  facelist:
+    build: .
+    container_name: facelist
+    volumes:
+    - ./facelist.yaml:/facelist.yaml
+    ports:
+    - 8080:8080
