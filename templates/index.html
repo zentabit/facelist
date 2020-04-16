@@ -76,8 +76,8 @@
         }
         .user__link {
             line-height: 0;
-            margin-top: auto;
             width: 100%;
+            margin-bottom: 0.5rem;
         }
         .user__image {
             width: 192px;
@@ -128,15 +128,19 @@
         <div id="users" class="users">
         {{range .Members}}
             <div class="user card block">
-                <div class="name">{{if .Profile.RealName}}{{.Profile.RealName}}{{else}}{{.Name}}{{end}}
-                <a href="slack://user?team={{.TeamId}}&id={{.Id}}">
-                    <img src="https://a.slack-edge.com/436da/marketing/img/meta/favicon-32.png" title="Contact {{.Profile.FirstName}} on Slack" width="16" height="16"/>
-                </a>
-                </div>
-                <div class="title">{{.Profile.Title}}</div>
                 <a class="user__link" href="slack://user?team={{.TeamId}}&id={{.Id}}">
                     <img class="user__image" src="{{.Profile.Image}}" title="Contact {{.Profile.FirstName}} on Slack"/>
                 </a>
+                <div class="user__info">
+                    <div class="name">{{if .Profile.RealName}}{{.Profile.RealName}}{{else}}{{.Name}}{{end}}
+                    <a href="slack://user?team={{.TeamId}}&id={{.Id}}">
+                        <img src="https://a.slack-edge.com/436da/marketing/img/meta/favicon-32.png" title="Contact {{.Profile.FirstName}} on Slack" width="16" height="16"/>
+                    </a>
+                    </div>
+                    {{if .Profile.Title}}
+                        <div class="title">{{.Profile.Title}}</div>
+                    {{end}}
+                </div>
             </div>
         {{end}}
         </div>
