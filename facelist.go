@@ -103,7 +103,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	if cfg.SlackAPIToken == "<SECRET_API_TOKEN_GOES_HERE>" {
 		userlist = getMockedUsers()
 	} else {
-		req, err := http.NewRequest("GET", "https://slack.com/api/users.list/", nil)
+		req, err := http.NewRequest("GET", "https://slack.com/api/users.list", nil)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
