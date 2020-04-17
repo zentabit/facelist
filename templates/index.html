@@ -99,6 +99,9 @@
     };
 
     function getComparableText(el) {
+       if (!el) {
+           return '';
+       }
        const txt = el.textContent || el.innerText;
        return txt.toUpperCase();
     }
