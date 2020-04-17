@@ -46,6 +46,8 @@ type (
 
 	UserList struct {
 		SlackTeam string
+		Ok        bool   `json:"ok"`
+		ErrorMsg  string `json:"error"`
 		Members   []User `json:"members"`
 	}
 
@@ -105,6 +107,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		req, err := http.NewRequest("GET", "https://slack.com/api/users.list", nil)
 		if err != nil {
+			log.Println("API error: " + err.Error())
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
@@ -112,6 +115,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 		resp, err := client.Do(req)
 		if err != nil {
+			log.Println("API error: " + err.Error())
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
@@ -121,6 +125,12 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		err = json.Unmarshal(body, &userlist)
 		if err != nil {
 			log.Fatal(err)
+		}
+		if(!userlist.Ok) {
+		    log.Println("API error: " + userlist.ErrorMsg)
+		    log.Printf("%s\n", body);
+		    http.Error(w, "API failed, see logs", http.StatusInternalServerError)
+		    return;
 		}
 	}
 
