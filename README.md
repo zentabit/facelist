@@ -1,7 +1,7 @@
 Facelist
 ========
 
-An app that queries Slack API for user profiles and show them on a simple web page.
+An app that queries Microsoft Graph API for user profiles and show them on a simple web page.
 
 Configuration
 =============
@@ -9,8 +9,9 @@ Configuration
 facelist is configured by a config file e.g facelist.yaml:
 
     * emailFilter - Only users with a email ending with this string will be showed
-    * slackTeam - The name of your slack team
-    * slackAPIToken - Access token to the Slack api
+    * applicationID, tentantID - 
+    * graphAPIToken - 
+    * groupID - 
 
 The API-token requires the scopes:
 * users:read
