@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Facelist</title>
+    <title>Jamboree21 | Facelist</title>
     <style>
         :root {
             --border: 1px solid rgba(0,0,0,0.08);
@@ -72,7 +72,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            max-width: 200px;
+            max-width: 300px;
         }
         .user__link {
             line-height: 0;
@@ -113,8 +113,8 @@
       // Loop through all users, and hide those who don't match the search query
       for (i = 0; i < users.length; i++) {
         userName = getComparableText(users[i].querySelector('.name'));
-        userTitle = getComparableText(users[i].querySelector('.title'));
-        if (userName.indexOf(filter) > -1 || userTitle.indexOf(filter) > -1) {
+        //userTitle = getComparableText(users[i].querySelector('.title'));
+        if (userName.indexOf(filter) > -1) {
           users[i].style.display = "";
         } else {
           users[i].style.display = "none";
@@ -129,26 +129,35 @@
             <input type="text" id="searchField" onkeyup="search()" placeholder="Search ...">
         </div>
         <div id="users" class="users">
-        {{range .Members}}
+        {{range . }}
             <div class="user card block">
-                <a class="user__link" href="slack://user?team={{.TeamId}}&id={{.Id}}">
-                    <img class="user__image" src="{{.Profile.Image}}" title="Contact {{.Profile.FirstName}} on Slack"/>
+                <a class="user__link" href="https://eur.delve.office.com/?u={{.ID}}">
+                    <img class="user__image" src="https://live.staticflickr.com/5006/5282320272_f3f4ba227e.jpg" title="View {{.GivenName}}s profile"/>
                 </a>
                 <div class="user__info">
-                    <div class="name">{{if .Profile.RealName}}{{.Profile.RealName}}{{else}}{{.Name}}{{end}}
-                    <a href="slack://user?team={{.TeamId}}&id={{.Id}}">
-                        <img src="https://a.slack-edge.com/436da/marketing/img/meta/favicon-32.png" title="Contact {{.Profile.FirstName}} on Slack" width="16" height="16"/>
+                    <div class="name">{{.DisplayName}}
+                    
+                    <a href="https://teams.microsoft.com/l/chat/0/0?users=<{{.Mail}}>">
+                        <img src="https://stglibrary.files.wordpress.com/2019/03/220px-microsoft_teams_logo.png" title="Contact {{.GivenName}} on Teams" width="16" height="16"/>
                     </a>
+
                     </div>
-                    {{if .Profile.Title}}
-                        <div class="title">{{.Profile.Title}}</div>
+                    {{if .Mail}}
+                        <div class="title">{{ .Mail }}</div>
                     {{end}}
+                    {{if .MobilePhone}}
+                        <div class="title">{{ .MobilePhone }}</div>
+                    {{end}}
+                    {{if .BusinessPhones}}
+                        <div class="title">{{ .BusinessPhones }}</div>
+                    {{end}}
+                    
                 </div>
             </div>
         {{end}}
         </div>
         <div class="footer">
-            <span class="count">{{ len .Members }}</span> faces served by <a href="https://github.com/tink-ab/facelist">https://github.com/tink-ab/facelist</a>
+            <span class="count">{{ len . }}</span> faces served by <a href="https://github.com/zentabit/facelist">https://github.com/zentabit/facelist</a>
         </div>
     </div>
   </body>

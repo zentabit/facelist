@@ -17,7 +17,7 @@ limitations under the License.
 package main
 
 import (
-	"encoding/json"
+	//"encoding/json"
 	"flag"
 	"html/template"
 	"io/ioutil"
@@ -26,128 +26,102 @@ import (
 	"os"
 	"sort"
 	"strings"
-	"time"
+	//"time"
+	"github.com/open-networks/go-msgraph"
+	//"fmt"
 
 	"gopkg.in/yaml.v2"
 )
 
 var (
 	cfg           config
-	userlist      UserList
+	userlist 	  msgraph.Users
 	IndexTemplate = template.Must(template.ParseFiles("templates/index.html"))
 )
-
 type (
 	config struct {
 		EmailFilter   string `yaml:"emailFilter"`
-		SlackAPIToken string `yaml:"slackAPIToken"`
-		SlackTeam     string `yaml:"slackTeam"`
-	}
-
-	UserList struct {
-		SlackTeam string
-		Ok        bool   `json:"ok"`
-		ErrorMsg  string `json:"error"`
-		Members   []User `json:"members"`
-	}
-
-	User struct {
-		Name    string  `json:"name"`
-		Id      string  `json:"id"`
-		TeamId  string  `json:"team_id"`
-		IsBot   bool    `json:"is_bot"`
-		Deleted bool    `json:"deleted"`
-		Profile Profile `json:"profile"`
-	}
-
-	Profile struct {
-		FirstName string `json:"first_name"`
-		LastName  string `json:"last_name"`
-		RealName  string `json:"real_name"`
-		Title     string `json:"title"`
-		Image     string `json:"image_192"`
-		Phone     string `json:"phone"`
-		Email     string `json:"email"`
-		Status    string `json:"status_text"`
+		GraphAPIToken string `yaml:"graphAPIToken"`
+		ApplicationID string `yaml:"applicationID"`
+		TenantID      string `yaml:"tenantID"`
+		GroupID		  string `yaml:"groupID"`
 	}
 )
 
+
+
 func init() {
 	log.Println("Starting facelist")
-
-	configFile := flag.String("config", "facelist.yaml", "Configuration file to load")
+	
+	configFile := flag.String("config", "scouterna.yaml", "Configuration file to load")
 	flag.Parse()
 	b, err := ioutil.ReadFile(*configFile)
+
 	if err != nil {
 		log.Fatalf("Unable to read config: %v\n", err)
 	}
-
+	
 	err = yaml.Unmarshal(b, &cfg)
+
 	if err != nil {
 		log.Fatalf("Unable to decode config: %v\n", err)
 	}
-
-	if cfg.SlackTeam == "" {
-		log.Fatalf("SLACK_TEAM is not set!")
+	
+	if cfg.ApplicationID == "" {
+		log.Fatalf("appID is not set!")
 		os.Exit(1)
 	}
-	if cfg.SlackAPIToken == "" {
-		log.Fatalf("SLACK_API_TOKEN is not set!")
+	if cfg.TenantID == "" {
+		log.Fatalf("tenantID is not set!")
 		os.Exit(1)
 	}
-	userlist.SlackTeam = cfg.SlackTeam
+	
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	client := http.Client{Timeout: time.Duration(5 * time.Second)}
+	//client := http.Client{Timeout: time.Duration(5 * time.Second)}
 
 	// Use mocked data for local dev
-	if cfg.SlackAPIToken == "<SECRET_API_TOKEN_GOES_HERE>" {
+	if cfg.GraphAPIToken == "" {
 		userlist = getMockedUsers()
 	} else {
-		req, err := http.NewRequest("GET", "https://slack.com/api/users.list", nil)
+		graphClient, err := msgraph.NewGraphClient(cfg.TenantID, cfg.ApplicationID, cfg.GraphAPIToken)
 		if err != nil {
-			log.Println("API error: " + err.Error())
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
+    		log.Println("Credentials are probably wrong or system time is not synced: ", err)
 		}
-		req.Header.Add("Authorization", "Bearer "+cfg.SlackAPIToken)
+		
+		
+		var g msgraph.Group
+		g, err = graphClient.GetGroup(cfg.GroupID)
+		userlist, err = g.ListMembers()
+		
+		
 
-		resp, err := client.Do(req)
 		if err != nil {
-			log.Println("API error: " + err.Error())
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-		defer resp.Body.Close()
-		body, _ := ioutil.ReadAll(resp.Body)
-
-		err = json.Unmarshal(body, &userlist)
-		if err != nil {
-			log.Fatal(err)
-		}
-		if(!userlist.Ok) {
-		    log.Println("API error: " + userlist.ErrorMsg)
-		    log.Printf("%s\n", body);
-		    http.Error(w, "API failed, see logs", http.StatusInternalServerError)
-		    return;
+			log.Printf(err.Error())
 		}
 	}
 
 	// Filter out deleted accounts, bots and users without @tink.se email addresses
-	filteredUsers := []User{}
-	for _, user := range userlist.Members {
-		if !user.Deleted && !user.IsBot && strings.HasSuffix(user.Profile.Email, cfg.EmailFilter) {
+	
+	filteredUsers := []msgraph.User{}
+	
+	for _, user := range userlist {
+		if strings.HasSuffix(user.Mail, cfg.EmailFilter) {
 			filteredUsers = append(filteredUsers, user)
 		}
 	}
-
-	// Sort users on first name
+	
+	
+	//Sort users on first name
+	
 	sort.SliceStable(filteredUsers, func(i, j int) bool {
-		return strings.ToLower(filteredUsers[i].Profile.RealName) < strings.ToLower(filteredUsers[j].Profile.RealName)
+		return strings.ToLower(filteredUsers[i].DisplayName) < strings.ToLower(filteredUsers[j].DisplayName)
 	})
+	
 
-	userlist.Members = filteredUsers
+	userlist = filteredUsers
+	
 	if err := IndexTemplate.Execute(w, userlist); err != nil {
 		log.Printf("Failed to execute index template: %v\n", err)
 		http.Error(w, "Oops. That's embarrassing. Please try again later.", http.StatusInternalServerError)
