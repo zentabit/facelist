@@ -153,6 +153,9 @@
                         <div class="title">{{ .BusinessPhones }}</div>
                     {{end}}
                     -->
+                    {{ if .GetAboutMe}}
+                        <div class="title">{{ .GetAboutMe }}</div>
+                    {{end}}
                 </div>
             </div>
         {{end}}
