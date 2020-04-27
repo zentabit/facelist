@@ -27,7 +27,7 @@ import (
 	"sort"
 	"strings"
 	//"time"
-	"github.com/zentabit/go-msgraph"
+	"github.com/open-networks/go-msgraph"
 	//"fmt"
 
 	"gopkg.in/yaml.v2"
