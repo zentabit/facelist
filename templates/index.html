@@ -132,7 +132,9 @@
         {{range . }}
             <div class="user card block">
                 <a class="user__link" href="https://eur.delve.office.com/?u={{.ID}}">
-                    <img class="user__image" src="https://outlook.office365.com/owa/service.svc/s/GetPersonaPhoto?email={{.Mail}}&UA=0&size=HR360x360&sc=1538493608488" title="View {{.GivenName}}s profile"/>
+                    
+                        <img class="user__image" src="../img/{{.ID}}.jpg" title="View {{.GivenName}}s profile" onerror="if (this.src != '../img/obiwan.jpg') this.src = '../img/obiwan.jpg';"/>
+                    
                 </a>
                 <div class="user__info">
                     <div class="name">{{.DisplayName}}
@@ -148,11 +150,6 @@
                     {{if .GetActivePhone}}
                         <div class="title">{{ .GetActivePhone }}</div>
                     {{end}}
-                    <!--
-                    {{if .BusinessPhones}}
-                        <div class="title">{{ .BusinessPhones }}</div>
-                    {{end}}
-                    -->
                 </div>
             </div>
         {{end}}

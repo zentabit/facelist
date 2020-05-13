@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/open-networks/go-msgraph"
+	"github.com/zentabit/go-msgraph"
 	//"encoding/json"
 	//"io/ioutil"
 )
