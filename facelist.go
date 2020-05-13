@@ -121,7 +121,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	
 
 	userlist = filteredUsers
-	
 	if err := IndexTemplate.Execute(w, userlist); err != nil {
 		log.Printf("Failed to execute index template: %v\n", err)
 		http.Error(w, "Oops. That's embarrassing. Please try again later.", http.StatusInternalServerError)
