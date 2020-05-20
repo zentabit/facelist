@@ -148,14 +148,11 @@
                     {{if .GetActivePhone }}
                         <div class="title">{{ .GetActivePhone }}</div>
                     {{end}}
-                    <!--
-                    {{if .BusinessPhones}}
-                        <div class="title">{{ .BusinessPhones }}</div>
-                    {{end}}
-                    -->
-                    {{if .GetAboutMe }}
-                        <div class="title">{{ .GetAboutMe }}</div>
-                    {{end}}
+                    
+                    <!--{{if .AboutMe.Value }}-->
+                        <div class="title">{{ .AboutMe.Value }}</div>
+                    <!--{{end}}-->
+                    
                 </div>
             </div>
         {{end}}

@@ -6,7 +6,13 @@ github.com/zentabit/go-msgraph v0.0.0-20200427173003-17f8ef6cc8f4 h1:MfwFsgvwaTh
 github.com/zentabit/go-msgraph v0.0.0-20200427173003-17f8ef6cc8f4/go.mod h1:7SxUo50Nro5GDfbEXHiT9wxzsfFF51HKjRIEhIDL1ow=
 github.com/zentabit/go-msgraph v0.0.0-20200504184519-cdbb584371f8 h1:VtacRQEBFdON3+WswFHBgrXovQvkl6hyyOcsowf0uRM=
 github.com/zentabit/go-msgraph v0.0.0-20200504184519-cdbb584371f8/go.mod h1:7SxUo50Nro5GDfbEXHiT9wxzsfFF51HKjRIEhIDL1ow=
+github.com/zentabit/go-msgraph v0.0.0-20200515090935-b86fd1e3963b h1:tcl0Kz6YW5rKgJWt8/SinEwsfqzhjkjNmKAt0TxHyLI=
+github.com/zentabit/go-msgraph v0.0.0-20200515090935-b86fd1e3963b/go.mod h1:7SxUo50Nro5GDfbEXHiT9wxzsfFF51HKjRIEhIDL1ow=
+github.com/zentabit/go-msgraph v0.0.0-20200516162840-9acc33e7905c h1:2LJGoejIgpkd1KDWpMyVZ4VQme2aSm/EBUYD+qthb/Q=
+github.com/zentabit/go-msgraph v0.0.0-20200516162840-9acc33e7905c/go.mod h1:7SxUo50Nro5GDfbEXHiT9wxzsfFF51HKjRIEhIDL1ow=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
 gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
+gopkg.in/yaml.v2 v2.3.0 h1:clyUAQHOM3G0M3f5vQj7LuJrETvjVot3Z5el9nffUtU=
+gopkg.in/yaml.v2 v2.3.0/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=

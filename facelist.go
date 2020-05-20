@@ -80,23 +80,30 @@ func init() {
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	//client := http.Client{Timeout: time.Duration(5 * time.Second)}
-
+	//var graphClient msgraph.GraphClient
 	// Use mocked data for local dev
 	if cfg.GraphAPIToken == "" {
-		userlist = getMockedUsers()
+		userlist = nil
 	} else {
 		graphClient, err := msgraph.NewGraphClient(cfg.TenantID, cfg.ApplicationID, cfg.GraphAPIToken)
 		if err != nil {
     		log.Println("Credentials are probably wrong or system time is not synced: ", err)
 		}
 		
-		
 		var g msgraph.Group
 		g, err = graphClient.GetGroup(cfg.GroupID)
 		userlist, err = g.ListMembers()
 		
-		
+		for _,u := range userlist {
+			tempU, _ := graphClient.GetUser(u.ID)
+			u.AboutMe.Value = tempU.AboutMe.Value
+		}
 
+		//log.Println(len(userlist))
+		for _,u := range userlist {
+			log.Println(u.AboutMe.Value)
+		}
+		
 		if err != nil {
 			log.Printf(err.Error())
 		}
@@ -114,7 +121,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	
 	
 	//Sort users on first name
-	
 	sort.SliceStable(filteredUsers, func(i, j int) bool {
 		return strings.ToLower(filteredUsers[i].DisplayName) < strings.ToLower(filteredUsers[j].DisplayName)
 	})
@@ -125,6 +131,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Failed to execute index template: %v\n", err)
 		http.Error(w, "Oops. That's embarrassing. Please try again later.", http.StatusInternalServerError)
 	}
+	//log.Println(len(userlist))
+	//for _,u := range userlist {
+	//	log.Println(u.AboutMe.Value)
+	//}
 }
 
 func main() {
