@@ -94,15 +94,20 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		g, err = graphClient.GetGroup(cfg.GroupID)
 		userlist, err = g.ListMembers()
 		
+		userlist2 := []msgraph.User{}
+
 		for _,u := range userlist {
 			tempU, _ := graphClient.GetUser(u.ID)
 			u.AboutMe.Value = tempU.AboutMe.Value
+			userlist2 = append(userlist2, u)
 		}
 
+		userlist = userlist2
+
 		//log.Println(len(userlist))
-		for _,u := range userlist {
-			log.Println(u.AboutMe.Value)
-		}
+		//for _,u := range userlist {
+		//	log.Println(u.AboutMe.Value)
+		//}
 		
 		if err != nil {
 			log.Printf(err.Error())
@@ -132,6 +137,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Oops. That's embarrassing. Please try again later.", http.StatusInternalServerError)
 	}
 	//log.Println(len(userlist))
+	
 	//for _,u := range userlist {
 	//	log.Println(u.AboutMe.Value)
 	//}
