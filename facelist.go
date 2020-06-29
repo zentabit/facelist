@@ -17,7 +17,6 @@ limitations under the License.
 package main
 
 import (
-	//"encoding/json"
 	"flag"
 	"html/template"
 	"io/ioutil"
@@ -26,10 +25,7 @@ import (
 	"os"
 	"sort"
 	"strings"
-	//"time"
 	"github.com/zentabit/go-msgraph"
-	//"fmt"
-
 	"gopkg.in/yaml.v2"
 )
 
@@ -104,11 +100,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 		userlist = userlist2
 
-		//log.Println(len(userlist))
-		//for _,u := range userlist {
-		//	log.Println(u.AboutMe.Value)
-		//}
-		
 		if err != nil {
 			log.Printf(err.Error())
 		}
@@ -136,11 +127,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Failed to execute index template: %v\n", err)
 		http.Error(w, "Oops. That's embarrassing. Please try again later.", http.StatusInternalServerError)
 	}
-	//log.Println(len(userlist))
-	
-	//for _,u := range userlist {
-	//	log.Println(u.AboutMe.Value)
-	//}
 }
 
 func main() {
