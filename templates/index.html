@@ -144,12 +144,16 @@
                     </a>
 
                     </div>
-                    {{if .Mail}}
+                    {{if .Mail }}
                         <div class="title">{{ .Mail }}</div>
                     {{end}}
-                    {{if .GetActivePhone}}
+                    {{if .GetActivePhone }}
                         <div class="title">{{ .GetActivePhone }}</div>
                     {{end}}
+                    {{if .AboutMe.Value }}
+                        <div class="title">{{ .AboutMe.Value }}</div>
+                    {{end}}
+                    
                 </div>
             </div>
         {{end}}
