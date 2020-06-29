@@ -26,6 +26,7 @@ import (
 	"sort"
 	"strings"
 	"github.com/zentabit/go-msgraph"
+
 	"gopkg.in/yaml.v2"
 )
 
@@ -127,9 +128,29 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Failed to execute index template: %v\n", err)
 		http.Error(w, "Oops. That's embarrassing. Please try again later.", http.StatusInternalServerError)
 	}
+
+	igc := ImgCacher{}
+	
+	igc.ApplicationID = cfg.ApplicationID
+	igc.ClientSecret = cfg.GraphAPIToken
+	igc.TenantID = cfg.TenantID
+	err := igc.getToken(&igc.tok)
+	if(err!=nil){
+		log.Println("fuck you")
+	}
+
+	for _, user := range userlist{
+		//log.Println("Hej")
+		err = igc.DownloadImage(user.ID)
+		if(err!=nil){
+			log.Println(err)
+		}
+	}
 }
 
 func main() {
 	http.HandleFunc("/", indexHandler)
+	fs := http.FileServer(http.Dir("img/"))
+	http.Handle("/img/", http.StripPrefix("/img/", fs))
 	http.ListenAndServe(":8080", nil)
 }

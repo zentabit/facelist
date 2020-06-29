@@ -2,6 +2,7 @@ Facelist
 ========
 
 An app that queries Microsoft Graph API for user profiles and show them on a simple web page.
+A fork of https://github.com/tink-ab/facelist.
 
 Configuration
 =============
