@@ -38,7 +38,7 @@ const BaseURL string = "https://graph.microsoft.com"
 // APIVersion represents the APIVersion of msgraph used by this implementation
 const APIVersion string = "v1.0"
 
-// ModMin: the most amount of Minutes a file can be Modified before it has to be updated
+// ModMin the most amount of Minutes a file can be Modified before it has to be updated
 const ModMin = 1000
 
 // gets a token, copied from go-msgraph
@@ -135,7 +135,7 @@ func (c *ImgCacher) DownloadImage(id string) error{
 
 		body, err := ioutil.ReadAll(resp.Body) // read body first to append it to the error (if any)
 		if resp.StatusCode == 404 {
-			return fmt.Errorf("image not found, probably because the user didn't set one")
+			//return fmt.Errorf("image not found, probably because the user didn't set one")
 		} else if resp.StatusCode < 200 || resp.StatusCode > 299 {
 			// Hint: this will mostly be the case if the tenant ID can not be found, the Application ID can not be found or the clientSecret is incorrect.
 			// The cause will be described in the body, hence we have to return the body too for proper error-analysis

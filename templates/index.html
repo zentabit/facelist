@@ -113,8 +113,8 @@
       // Loop through all users, and hide those who don't match the search query
       for (i = 0; i < users.length; i++) {
         userName = getComparableText(users[i].querySelector('.name'));
-        //userTitle = getComparableText(users[i].querySelector('.title'));
-        if (userName.indexOf(filter) > -1) {
+        userTitle = getComparableText(users[i].querySelector('.title'));
+        if (userName.indexOf(filter) > -1 || userTitle.indexOf(filter) > -1) {
           users[i].style.display = "";
         } else {
           users[i].style.display = "none";
@@ -145,10 +145,10 @@
 
                     </div>
                     {{if .Mail }}
-                        <div class="title">{{ .Mail }}</div>
+                        <div class="mail">{{ .Mail }}</div>
                     {{end}}
                     {{if .GetActivePhone }}
-                        <div class="title">{{ .GetActivePhone }}</div>
+                        <div class="phone">{{ .GetActivePhone }}</div>
                     {{end}}
                     {{if .AboutMe.Value }}
                         <div class="title">{{ .AboutMe.Value }}</div>

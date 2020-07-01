@@ -26,7 +26,7 @@ import (
 	"sort"
 	"strings"
 	"github.com/zentabit/go-msgraph"
-
+	"github.com/k3a/html2text"
 	"gopkg.in/yaml.v2"
 )
 
@@ -95,8 +95,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 		for _,u := range userlist {
 			tempU, _ := graphClient.GetUser(u.ID)
-			u.AboutMe.Value = tempU.AboutMe.Value
-			userlist2 = append(userlist2, u)
+			tempU.AboutMe.Value = html2text.HTML2Text(tempU.AboutMe.Value)
+			tempU.AboutMe.Value = strings.SplitAfterN(tempU.AboutMe.Value, "\n", 2)[0]
+			userlist2 = append(userlist2, tempU)
 		}
 
 		userlist = userlist2
