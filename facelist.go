@@ -95,8 +95,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 		for _,u := range userlist {
 			tempU, _ := graphClient.GetUser(u.ID)
-			tempU.AboutMe.Value = html2text.HTML2Text(tempU.AboutMe.Value)
-			tempU.AboutMe.Value = strings.SplitAfterN(tempU.AboutMe.Value, "\n", 2)[0]
+			tempU.AboutMe.Value = strings.SplitAfterN(html2text.HTML2Text(tempU.AboutMe.Value), "\n", 2)[0]
 			userlist2 = append(userlist2, tempU)
 		}
 
