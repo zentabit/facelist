@@ -28,12 +28,14 @@ import (
 	"github.com/zentabit/go-msgraph"
 	"github.com/k3a/html2text"
 	"gopkg.in/yaml.v2"
+	"time"
 )
 
 var (
 	cfg           config
 	userlist 	  msgraph.Users
 	IndexTemplate = template.Must(template.ParseFiles("templates/index.html"))
+	am			= "amfile"
 )
 type (
 	config struct {
@@ -72,7 +74,7 @@ func init() {
 		log.Fatalf("tenantID is not set!")
 		os.Exit(1)
 	}
-	
+	log.Println("Config initialised")
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
@@ -89,16 +91,46 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		
 		var g msgraph.Group
 		g, err = graphClient.GetGroup(cfg.GroupID)
+		log.Println("Group fetched")
+
 		userlist, err = g.ListMembers()
-		
+		log.Println("Users fetched")
 		userlist2 := []msgraph.User{}
 
-		for _,u := range userlist {
-			tempU, _ := graphClient.GetUser(u.ID)
-			tempU.AboutMe.Value = strings.SplitAfterN(html2text.HTML2Text(tempU.AboutMe.Value), "\n", 2)[0]
-			userlist2 = append(userlist2, tempU)
+		// create temp aboutme store
+		var aboutMes = make(map[string]string)
+		// check if file is stale
+		fi, err := os.Stat(am)
+		if err == nil && time.Now().Sub(fi.ModTime()).Minutes() > 1000 {
+			os.Remove(am)
 		}
 
+		// if file exists, use that info and load the userlist
+		if _, err := os.Stat(am); err == nil {
+			s,_ := ioutil.ReadFile(am)
+			yaml.Unmarshal(s, aboutMes)
+			for _,u := range userlist {
+				u.AboutMe.Value = strings.SplitAfterN(html2text.HTML2Text(aboutMes[u.ID]), "\n", 2)[0]
+				userlist2 = append(userlist2, u)
+				
+			}
+		// otherwise, create the file again
+		} else if os.IsNotExist(err) {
+			
+			for _,u := range userlist {
+				tempU, _ := graphClient.GetUser(u.ID)
+				tempU.AboutMe.Value = strings.SplitAfterN(html2text.HTML2Text(tempU.AboutMe.Value), "\n", 2)[0]
+				userlist2 = append(userlist2, tempU)
+				aboutMes[u.ID] = tempU.AboutMe.Value
+			}
+			s, _ := yaml.Marshal(aboutMes)
+			ioutil.WriteFile(am, s, 0644)
+
+		} else {
+			// TODO implementera nån lösning här
+		}
+
+		log.Println("Aboutmes fetched")
 		userlist = userlist2
 
 		if err != nil {
@@ -138,7 +170,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	if(err!=nil){
 		log.Println("fuck you")
 	}
-
+	log.Println("starting image download")
 	for _, user := range userlist{
 		//log.Println("Hej")
 		err = igc.DownloadImage(user.ID)
@@ -146,6 +178,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 		}
 	}
+	log.Println("Finished!")
 }
 
 func main() {
