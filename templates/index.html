@@ -131,7 +131,7 @@
         <div id="users" class="users">
         {{range . }}
             <div class="user card block">
-                <a class="user__link" href="https://eur.delve.office.com/?u={{.ID}}">
+                <a class="user__link" href="https://eur.delve.office.com/?u={{.ID}}" target="_blank">
                     
                         <img class="user__image" src="../img/{{.ID}}.jpg" title="View {{.GivenName}}s profile" onerror="if (this.src != '../img/obiwan.jpg') this.src = '../img/obiwan.jpg';"/>
                    
@@ -139,17 +139,23 @@
                 <div class="user__info">
                     <div class="name">{{.DisplayName}}
                     
-                    <a href="https://teams.microsoft.com/l/chat/0/0?users=<{{.Mail}}>">
-                        <img src="https://stglibrary.files.wordpress.com/2019/03/220px-microsoft_teams_logo.png" title="Contact {{.GivenName}} on Teams" width="16" height="16"/>
+                    <a href="https://teams.microsoft.com/l/call/0/0?users={{.Mail}}">
+                        <img src="https://stglibrary.files.wordpress.com/2019/03/220px-microsoft_teams_logo.png" title="Call {{.GivenName}} on Teams" width="16" height="16"/>
+                    </a>
+
+                    <a href="https://wiki.internal.jamboree.se.webservices.scouterna.net/Anv%C3%A4ndare:{{.GivenName}}_{{.Surname}}" target="_blank">
+                        <img src="https://img.freepik.com/free-icon/wikipedia-logo_318-65113.jpg?size=338&ext=jpg" title="{{.GivenName}}s page on the Wiki" width="16" height="16" />
                     </a>
 
                     </div>
                     {{if .Mail }}
                         <div class="mail">{{ .Mail }}</div>
                     {{end}}
+                    <!--
                     {{if .GetActivePhone }}
                         <div class="phone">{{ .GetActivePhone }}</div>
                     {{end}}
+                    -->
                     {{if .AboutMe.Value }}
                         <div class="title">{{ .AboutMe.Value }}</div>
                     {{end}}
