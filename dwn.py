@@ -3,8 +3,8 @@ from office365.sharepoint.client_context import ClientContext
 import os, tempfile,sys
 
 settings = {
-    'username': "@scouterna.se",
-    'password': "",
+    'username': os.environ["o365-user"],
+    'password': os.environ["o365-passwd"],
     'url': "https://scouterna.sharepoint.com" + "/sites/StabenJam21"
 }
 file_id = '5A578FC8-26D7-45B9-A0BD-D5BA76A34575'
