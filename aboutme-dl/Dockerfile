@@ -1,4 +1,7 @@
 FROM ubuntu:20.04
+LABEL NAME=aboutme-dl
+
+RUN apt update && apt install python3 python3-pip && apt clean
 
 WORKDIR /app
 
