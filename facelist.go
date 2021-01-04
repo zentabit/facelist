@@ -17,6 +17,7 @@ limitations under the License.
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"html/template"
 	"io/ioutil"
@@ -26,16 +27,16 @@ import (
 	"sort"
 	"strings"
 	"github.com/zentabit/go-msgraph"
-	"github.com/k3a/html2text"
+	//"github.com/k3a/html2text"
 	"gopkg.in/yaml.v2"
-	"time"
+	//"time"
 )
 
 var (
 	cfg           config
 	userlist 	  msgraph.Users
 	IndexTemplate = template.Must(template.ParseFiles("templates/index.html"))
-	am			= "amfile"
+	am			= "aboutme.json"
 )
 type (
 	config struct {
@@ -46,7 +47,12 @@ type (
 		GroupID		  string `yaml:"groupID"`
 	}
 )
-
+/*
+aboutMes struct {
+	Email string
+	Role string 
+}
+*/
 
 
 func init() {
@@ -98,8 +104,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		userlist2 := []msgraph.User{}
 
 		// create temp aboutme store
-		var aboutMes = make(map[string]string)
+		var aboutMes = make(map[string] string)
+		//aboutMes["foo"] = "bar"
 		// check if file is stale
+		/*
 		fi, err := os.Stat(am)
 		if err == nil && time.Now().Sub(fi.ModTime()).Minutes() > 1000 {
 			os.Remove(am)
@@ -128,6 +136,19 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 		} else {
 			// TODO implementera nån lösning här
+		}
+		*/
+
+		if _, err := os.Stat(am); err == nil {
+			s,_ := ioutil.ReadFile(am)
+			json.Unmarshal(s, &aboutMes)
+
+			for _,u := range userlist {
+				log.Println(aboutMes[u.Mail])
+				u.AboutMe.Value = aboutMes[u.Mail]
+				//log.Println(u.AboutMe.Value)
+				userlist2 = append(userlist2, u)
+			}
 		}
 
 		log.Println("Aboutmes fetched")
