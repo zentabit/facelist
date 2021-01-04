@@ -19,9 +19,10 @@ def exceltojson(inp, out):
     f.close
 
 def main():
-    filename = sys.argv[1]
+    directory = sys.argv[1]
+    filename = directory + "/tmp.xlsx"
     dwn.run(filename)
-    exceltojson(filename, "aboutme.json")
+    exceltojson(filename, directory + "/aboutme.json")
     os.remove(filename)
     print("Done!")
 
