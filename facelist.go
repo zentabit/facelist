@@ -36,7 +36,7 @@ var (
 	cfg           config
 	userlist 	  msgraph.Users
 	IndexTemplate = template.Must(template.ParseFiles("templates/index.html"))
-	am			= "aboutme.json"
+	am			= "data/aboutme.json"
 )
 type (
 	config struct {
